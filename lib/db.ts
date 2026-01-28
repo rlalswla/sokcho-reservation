@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { neon } from "@neondatabase/serverless";
-import { PrismaNeon } from "@prisma/adapter-neon";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { Pool } from "pg";
 
 declare global {
   var prisma: PrismaClient | undefined;
@@ -12,8 +12,8 @@ if (!connectionString) {
   throw new Error("DATABASE_URL is not set");
 }
 
-const client = neon(connectionString);
-const adapter = new PrismaNeon(client);
+const pool = new Pool({ connectionString });
+const adapter = new PrismaPg(pool);
 
 export const db =
   global.prisma ||
