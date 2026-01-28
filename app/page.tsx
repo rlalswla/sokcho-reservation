@@ -20,7 +20,7 @@ export default async function Home() {
           예약 리스트
         </h2>
         <div className="grid gap-3">
-          {reservations.map((res: typeof reservations[0]) => (
+          {reservations.map((res: (typeof reservations)[0]) => (
             <div
               key={res.id}
               className="p-4 border rounded-lg bg-white shadow-sm flex justify-between items-center"
